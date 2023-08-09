@@ -1,0 +1,16 @@
+version: '3' # composeファイルのバージョン
+services:
+  client: # サービス名
+    container_name: react
+    build: # ビルドに使うDockerファイルのパス
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+      - 5555:5000
+    volumes: # マウントディレクトリ
+      - ./app:/app
+    working_dir: /app
+    tty: true # コンテナの永続化
+    environment:
+      - TZ=Asia/Tokyo
